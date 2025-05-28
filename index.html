@@ -5,14 +5,101 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WebCraft Solutions</title>
+  <title>Aassheervaad Solutions</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+    header {
+      background: linear-gradient(135deg, #1f3c88, #6dd5ed);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      position: relative;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    .logo {
+      height: 60px;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 10px 0 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    nav ul li {
+      position: relative;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+    }
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 35px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1;
+    }
+    .dropdown-content li {
+      display: block;
+    }
+    .dropdown-content a {
+      color: #333;
+      padding: 10px 15px;
+      display: block;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .hero {
+      position: relative;
+      text-align: center;
+    }
+    .hero-image {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      object-fit: cover;
+    }
+    .hero-text {
+      padding: 30px;
+      background-color: white;
+      margin: 0 auto;
+      max-width: 960px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    footer {
+      background: linear-gradient(135deg, #6dd5ed, #1f3c88);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+  </style>
 </head>
 <body>
   <header>
     <div class="header-container">
-      <img src="images/logo.png" alt="WebCraft Logo" class="logo" />
-      <h1>WebCraft Solutions</h1>
+      <img src="images/logo.png" alt="Aassheervaad Logo" class="logo" />
+      <h1>Aassheervaad Solutions</h1>
     </div>
     <nav>
       <ul class="menu">
@@ -36,9 +123,9 @@
     <section class="hero">
       <img src="images/hero-banner.jpg" alt="Hero Banner" class="hero-image" />
       <div class="hero-text">
-        <h2>Welcome to WebCraft Solutions</h2>
+        <h2>Welcome to Aassheervaad Solutions</h2>
         <p>
-          At WebCraft Solutions, we specialize in creating stunning, responsive websites that empower businesses to grow in the digital world. Our mission is to craft high-performing web experiences that are both visually engaging and technically robust.
+          At Aassheervaad Solutions, we specialize in creating stunning, responsive websites that empower businesses to grow in the digital world. Our mission is to craft high-performing web experiences that are both visually engaging and technically robust.
         </p>
         <p>
           Whether you’re a startup looking to launch your first online presence or an enterprise aiming to revamp your digital strategy, we’ve got the right tools and team to make it happen. Our solutions are fully customized to your unique goals and industry.
@@ -62,7 +149,7 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 WebCraft Solutions. All rights reserved.</p>
+    <p>&copy; 2025 Aassheervaad Solutions. All rights reserved.</p>
   </footer>
 </body>
 </html>
