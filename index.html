@@ -1,142 +1,68 @@
+<!-- Root index.html file for your multi-page company website -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WebCraft Solutions</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-    header {
-      background-color: #007bff;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    nav {
-      margin-top: 10px;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 0 15px;
-    }
-    h2 {
-      color: #007bff;
-      margin-bottom: 10px;
-    }
-    p {
-      line-height: 1.6;
-    }
-    .services {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-    .service {
-      background: white;
-      padding: 20px;
-      flex: 1 1 250px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      border-radius: 8px;
-      text-align: center;
-    }
-    footer {
-      background-color: #222;
-      color: white;
-      text-align: center;
-      padding: 15px 0;
-      margin-top: 40px;
-      font-size: 0.9rem;
-    }
-    .btn-contact {
-      background-color: #007bff;
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-      margin-top: 20px;
-      display: inline-block;
-      text-decoration: none;
-    }
-    .btn-contact:hover {
-      background-color: #0056b3;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-<header>
-  <h1>WebCraft Solutions</h1>
-  <nav>
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<div class="container">
-  <section id="intro">
-    <h2>Welcome to WebCraft Solutions</h2>
-    <p>Your one-stop destination for professional website creation. We build stunning, responsive, and user-friendly websites tailored to your business needs.</p>
-    <a href="#contact" class="btn-contact">Get In Touch</a>
-  </section>
-
-  <section id="services">
-    <h2>Our Services</h2>
-    <div class="services">
-      <div class="service">
-        <h3>Custom Website Design</h3>
-        <p>Unique and beautiful designs that reflect your brand identity and attract customers.</p>
-      </div>
-      <div class="service">
-        <h3>Responsive Development</h3>
-        <p>Websites that work perfectly on all devices — desktop, tablet, and mobile.</p>
-      </div>
-      <div class="service">
-        <h3>SEO Optimization</h3>
-        <p>Improve your site’s ranking and visibility on search engines with our expert SEO services.</p>
-      </div>
+  <header>
+    <div class="header-container">
+      <img src="images/logo.png" alt="WebCraft Logo" class="logo" />
+      <h1>WebCraft Solutions</h1>
     </div>
-  </section>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="services.html">Services</a>
+          <ul class="dropdown-content">
+            <li><a href="web-design.html">Web Design</a></li>
+            <li><a href="ecommerce.html">E-Commerce</a></li>
+            <li><a href="seo.html">SEO</a></li>
+          </ul>
+        </li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <section id="about" style="margin-top:40px;">
-    <h2>About Us</h2>
-    <p>At WebCraft Solutions, we combine creativity and technology to deliver websites that help your business grow. Our team of experts ensures every project meets the highest standards of quality and functionality.</p>
-  </section>
+  <main>
+    <section class="hero">
+      <img src="images/hero-banner.jpg" alt="Hero Banner" class="hero-image" />
+      <div class="hero-text">
+        <h2>Welcome to WebCraft Solutions</h2>
+        <p>
+          At WebCraft Solutions, we specialize in creating stunning, responsive websites that empower businesses to grow in the digital world. Our mission is to craft high-performing web experiences that are both visually engaging and technically robust.
+        </p>
+        <p>
+          Whether you’re a startup looking to launch your first online presence or an enterprise aiming to revamp your digital strategy, we’ve got the right tools and team to make it happen. Our solutions are fully customized to your unique goals and industry.
+        </p>
+        <p>
+          <strong>Our capabilities include:</strong>
+        </p>
+        <ul>
+          <li>Custom Web Design and Development</li>
+          <li>E-Commerce Integration and Optimization</li>
+          <li>SEO and Digital Marketing Strategies</li>
+          <li>Mobile App Integration</li>
+          <li>CMS Platforms like WordPress, Shopify, Webflow</li>
+          <li>Performance Tuning & Site Analytics</li>
+        </ul>
+        <p>
+          Let’s build your digital future together. Explore our services, view our past work, and connect with us to get started.
+        </p>
+      </div>
+    </section>
+  </main>
 
-  <section id="contact" style="margin-top:40px;">
-    <h2>Contact Us</h2>
-    <p>Ready to start your project? Reach out today!</p>
-    <p>Email: <a href="mailto:contact@webcraftsolutions.com">contact@webcraftsolutions.com</a></p>
-    <p>Phone: +1 (555) 123-4567</p>
-  </section>
-</div>
-
-<footer>
-  &copy; 2025 WebCraft Solutions. All rights reserved.
-</footer>
-
+  <footer>
+    <p>&copy; 2025 WebCraft Solutions. All rights reserved.</p>
+  </footer>
 </body>
 </html>
