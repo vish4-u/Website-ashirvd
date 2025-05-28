@@ -1,175 +1,51 @@
-// File: Program.cs (or Startup.cs in older .NET Core versions)
-// This file configures the web application's services and request pipeline.
-// In a real ASP.NET Core project, you would run this using 'dotnet run'.
-
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddControllersWithViews(); // Enables MVC controllers and views.
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error"); // Custom error page for production.
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection(); // Redirects HTTP requests to HTTPS.
-app.UseStaticFiles();     // Enables serving static files (CSS, JS, images) from wwwroot.
-
-app.UseRouting();         // Enables routing middleware.
-
-app.UseAuthorization();   // Enables authorization middleware.
-
-// Configures the default route for MVC actions.
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.Run();
-
-// --- End of Program.cs ---
-
-// File: Controllers/HomeController.cs
-// This controller handles requests for the home page and other general pages.
-
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using GitHubWebsite.Models; // Assuming your project namespace is GitHubWebsite
-
-namespace GitHubWebsite.Controllers
-{
-    public class HomeController : Controller
-    {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        // Action for the main landing page.
-        public IActionResult Index()
-        {
-            return View(); // Renders Views/Home/Index.cshtml
-        }
-
-        // Action for the "About GitHub" page.
-        public IActionResult About()
-        {
-            return View(); // Renders Views/Home/About.cshtml
-        }
-
-        // Action for the "Features" page.
-        public IActionResult Features()
-        {
-            return View(); // Renders Views/Home/Features.cshtml
-        }
-
-        // Action for the "Pricing" page.
-        public IActionResult Pricing()
-        {
-            return View(); // Renders Views/Home/Pricing.cshtml
-        }
-
-        // Action for the "Community" page.
-        public IActionResult Community()
-        {
-            return View(); // Renders Views/Home/Community.cshtml
-        }
-
-        // Action for the "Support" page.
-        public IActionResult Support()
-        {
-            return View(); // Renders Views/Home/Support.cshtml
-        }
-
-        // Action for the "Contact" page.
-        public IActionResult Contact()
-        {
-            return View(); // Renders Views/Home/Contact.cshtml
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-    }
-}
-
-// --- End of Controllers/HomeController.cs ---
-
-// File: Models/ErrorViewModel.cs
-// A simple model for displaying error information.
-
-namespace GitHubWebsite.Models
-{
-    public class ErrorViewModel
-    {
-        public string? RequestId { get; set; }
-
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-    }
-}
-
-// --- End of Models/ErrorViewModel.cs ---
-
-// File: Views/_ViewImports.cshtml
-// This file is automatically included in all Razor views, providing common directives.
-
-@using GitHubWebsite
-@using GitHubWebsite.Models
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
-// --- End of Views/_ViewImports.cshtml ---
-
-// File: Views/_Layout.cshtml
-// This is the main layout file that defines the common structure of all pages.
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GitHub-Themed Website</title>
+    <title>GitHub Explorer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* bg-gray-100 */
+            color: #1f2937; /* text-gray-900 */
         }
         /* Custom styles for dropdowns */
         .dropdown-menu {
             display: none;
+            position: absolute;
+            z-index: 10;
         }
         .dropdown-menu.active {
             display: block;
         }
+        /* Ensure proper positioning for dropdowns in mobile */
+        .mobile-dropdown-menu {
+            display: none;
+            width: 100%;
+        }
+        .mobile-dropdown-menu.active {
+            display: block;
+        }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body>
     <header class="bg-gray-800 text-white shadow-md">
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a class="text-2xl font-bold text-indigo-400" asp-area="" asp-controller="Home" asp-action="Index">
+            <a class="text-2xl font-bold text-indigo-400" href="index.html">
                 <i class="fab fa-github mr-2"></i>GitHub Explorer
             </a>
             <div class="hidden md:flex space-x-6">
-                <a class="hover:text-indigo-400 transition duration-300" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                <a class="hover:text-indigo-400 transition duration-300" href="#about">About</a>
                 <div class="relative group">
                     <button class="hover:text-indigo-400 transition duration-300 focus:outline-none flex items-center dropdown-toggle" data-dropdown="featuresDropdown">
                         Features
                         <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="featuresDropdown" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white text-gray-900 rounded-md shadow-lg py-1 z-10">
+                    <div id="featuresDropdown" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white text-gray-900 rounded-md shadow-lg py-1">
                         <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="code-hosting">Code Hosting & Collaboration</a>
                         <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="version-control">Version Control (Git)</a>
                         <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="issue-tracking">Issue Tracking</a>
@@ -177,20 +53,20 @@ namespace GitHubWebsite.Models
                         <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="pages-hosting">GitHub Pages</a>
                     </div>
                 </div>
-                <a class="hover:text-indigo-400 transition duration-300" asp-area="" asp-controller="Home" asp-action="Pricing">Pricing</a>
+                <a class="hover:text-indigo-400 transition duration-300" href="#pricing">Pricing</a>
                 <div class="relative group">
                     <button class="hover:text-indigo-400 transition duration-300 focus:outline-none flex items-center dropdown-toggle" data-dropdown="communityDropdown">
                         Community
                         <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="communityDropdown" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white text-gray-900 rounded-md shadow-lg py-1 z-10">
+                    <div id="communityDropdown" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white text-gray-900 rounded-md shadow-lg py-1">
                         <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="forums">Discussions & Forums</a>
                         <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="events">Events & Meetups</a>
                         <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="open-source">Open Source Projects</a>
                     </div>
                 </div>
-                <a class="hover:text-indigo-400 transition duration-300" asp-area="" asp-controller="Home" asp-action="Support">Support</a>
-                <a class="hover:text-indigo-400 transition duration-300" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                <a class="hover:text-indigo-400 transition duration-300" href="#support">Support</a>
+                <a class="hover:text-indigo-400 transition duration-300" href="#contact">Contact</a>
             </div>
             <button id="mobileMenuButton" class="md:hidden text-white focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -198,13 +74,13 @@ namespace GitHubWebsite.Models
         </nav>
         <div id="mobileMenu" class="md:hidden bg-gray-700 hidden">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600" href="#about">About</a>
                 <div class="relative">
                     <button class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600 flex items-center justify-between dropdown-toggle" data-dropdown="mobileFeaturesDropdown">
                         Features
                         <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="mobileFeaturesDropdown" class="dropdown-menu mt-1 w-full bg-gray-600 text-white rounded-md shadow-lg py-1 pl-6">
+                    <div id="mobileFeaturesDropdown" class="mobile-dropdown-menu mt-1 w-full bg-gray-600 text-white rounded-md shadow-lg py-1 pl-6">
                         <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="code-hosting">Code Hosting & Collaboration</a>
                         <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="version-control">Version Control (Git)</a>
                         <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="issue-tracking">Issue Tracking</a>
@@ -212,445 +88,392 @@ namespace GitHubWebsite.Models
                         <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="pages-hosting">GitHub Pages</a>
                     </div>
                 </div>
-                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600" asp-area="" asp-controller="Home" asp-action="Pricing">Pricing</a>
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600" href="#pricing">Pricing</a>
                 <div class="relative">
                     <button class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600 flex items-center justify-between dropdown-toggle" data-dropdown="mobileCommunityDropdown">
                         Community
                         <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="mobileCommunityDropdown" class="dropdown-menu mt-1 w-full bg-gray-600 text-white rounded-md shadow-lg py-1 pl-6">
+                    <div id="mobileCommunityDropdown" class="mobile-dropdown-menu mt-1 w-full bg-gray-600 text-white rounded-md shadow-lg py-1 pl-6">
                         <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="forums">Discussions & Forums</a>
                         <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="events">Events & Meetups</a>
                         <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="open-source">Open Source Projects</a>
                     </div>
                 </div>
-                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600" asp-area="" asp-controller="Home" asp-action="Support">Support</a>
-                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600" href="#support">Support</a>
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600" href="#contact">Contact</a>
             </div>
         </div>
     </header>
 
     <div class="container mx-auto px-4 py-8 min-h-[calc(100vh-160px)]">
         <main role="main" class="pb-3">
-            @RenderBody()
+            <section id="home" class="text-center py-12">
+                <h1 class="text-5xl font-extrabold text-gray-800 mb-4">Welcome to GitHub Explorer!</h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                    Your comprehensive guide to the world's leading platform for software development and collaboration.
+                    Discover how millions of developers and companies build, ship, and maintain their software on GitHub.
+                </p>
+                <a href="#about" class="inline-block bg-indigo-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transition duration-300">
+                    Learn More About GitHub
+                </a>
+            </section>
+
+            <div id="infoDisplay" class="hidden bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md shadow-md mt-8" role="alert">
+                <p class="font-bold text-lg mb-2">Selected Feature Information:</p>
+                <div id="infoContent"></div>
+                <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded close-info">Close</button>
+            </div>
+
+            <section id="about" class="my-12 py-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">About GitHub</h2>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    GitHub is the world's largest platform for developers to host and review code, manage projects, and build software alongside millions of other developers.
+                    Founded in 2008, it has grown to become an indispensable tool for individual programmers, small teams, and large enterprises alike.
+                </p>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    At its core, GitHub provides Git-based version control, allowing users to track changes to their code, collaborate on projects, and manage different versions of their software.
+                    This distributed version control system ensures that every developer has a complete history of the project, making it easy to revert changes, branch off for new features, and merge contributions.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    Beyond just code hosting, GitHub offers a rich ecosystem of features including issue tracking, project boards, wikis, and most notably, GitHub Actions for continuous integration and continuous delivery (CI/CD).
+                    It fosters a vibrant open-source community, enabling developers worldwide to share, contribute to, and learn from a vast array of projects.
+                </p>
+            </section>
+
+            <section id="features" class="my-12 py-8">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">Explore GitHub's Powerful Features</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Code Hosting & Collaboration</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Securely host your code repositories in the cloud. Collaborate with teams using pull requests, code reviews, and inline commenting.
+                            Manage branches, merge conflicts, and ensure code quality with powerful collaboration tools.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Version Control with Git</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Leverage the full power of Git for distributed version control. Track every change, revert to any previous state, and manage project history with ease.
+                            This ensures data integrity and provides a safety net for all your development efforts.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Issue Tracking</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Organize and prioritize your work with GitHub Issues. Track bugs, request features, assign tasks, and discuss solutions with your team.
+                            Integrate issues with your code for seamless project management.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">GitHub Actions (CI/CD)</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Automate your software development workflows directly from your repository. Build, test, and deploy your code automatically,
+                            reducing manual effort and accelerating your development cycle with continuous integration and continuous delivery.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">GitHub Pages</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Host static websites directly from your GitHub repositories. Perfect for personal portfolios, project documentation, blogs, or simple marketing sites.
+                            It's a free and convenient way to publish web content.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Security & Compliance</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Benefit from advanced security features like code scanning, secret scanning, and dependency review. GitHub helps you identify and fix vulnerabilities early,
+                            ensuring your code and projects remain secure and compliant.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="pricing" class="my-12 py-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">GitHub Pricing Plans</h2>
+                <p class="text-gray-700 leading-relaxed mb-8 text-center">
+                    GitHub offers various plans tailored to different needs, from individual developers and small teams to large enterprises.
+                    Choose the plan that best fits your collaboration and development requirements.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-indigo-500">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4">Free</h3>
+                        <p class="text-gray-600 text-lg mb-4">For individuals and small teams.</p>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2 mb-6">
+                            <li>Unlimited public/private repositories</li>
+                            <li>2,000 GitHub Actions minutes/month (public repos)</li>
+                            <li>500MB GitHub Packages storage</li>
+                            <li>Community support</li>
+                        </ul>
+                        <button class="w-full bg-indigo-600 text-white font-semibold py-3 px-6 rounded-full hover:bg-indigo-700 transition duration-300">
+                            Get Started Free
+                        </button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-500">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4">Team</h3>
+                        <p class="text-gray-600 text-lg mb-4">For growing teams and organizations.</p>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2 mb-6">
+                            <li>All Free features, plus:</li>
+                            <li>3,000 GitHub Actions minutes/month (private repos)</li>
+                            <li>2GB GitHub Packages storage</li>
+                            <li>Code owners and protected branches</li>
+                            <li>Team discussions</li>
+                            <li>Web-based support</li>
+                        </ul>
+                        <button class="w-full bg-green-600 text-white font-semibold py-3 px-6 rounded-full hover:bg-green-700 transition duration-300">
+                            View Team Pricing
+                        </button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-purple-500">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4">Enterprise</h3>
+                        <p class="text-gray-600 text-lg mb-4">For large organizations requiring advanced security and compliance.</p>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2 mb-6">
+                            <li>All Team features, plus:</li>
+                            <li>50,000 GitHub Actions minutes/month</li>
+                            <li>50GB GitHub Packages storage</li>
+                            <li>Advanced security features (code scanning, secret scanning)</li>
+                            <li>Audit logs and SAML single sign-on</li>
+                            <li>Premium support</li>
+                        </ul>
+                        <button class="w-full bg-purple-600 text-white font-semibold py-3 px-6 rounded-full hover:bg-purple-700 transition duration-300">
+                            Contact Sales
+                        </button>
+                    </div>
+                </div>
+                <p class="text-center text-gray-600 mt-8">
+                    For detailed pricing and custom solutions, please visit the official GitHub pricing page.
+                </p>
+            </section>
+
+            <section id="community" class="my-12 py-8">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">Join the Global GitHub Community</h2>
+                <p class="text-gray-700 leading-relaxed mb-4 text-center">
+                    GitHub is more than just a platform; it's a thriving global community of developers, designers, writers, and innovators.
+                    Connecting with others is at the heart of open source and collaborative development.
+                </p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Discussions & Forums</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Engage in conversations, ask questions, and share your knowledge on GitHub Discussions.
+                            Many projects have dedicated discussion boards where you can connect directly with maintainers and contributors.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Events & Meetups</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Participate in official GitHub events, local meetups, and hackathons. These events are fantastic opportunities
+                            to learn new skills, network with peers, and contribute to exciting projects.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Open Source Projects</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Discover millions of open-source projects on GitHub. Contribute to projects you care about,
+                            learn from experienced developers, and showcase your skills to the world. Your contributions can make a real impact.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">GitHub Education</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            If you're a student or educator, explore GitHub Education for free access to developer tools,
+                            learning resources, and a supportive community to kickstart your career in tech.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="support" class="my-12 py-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">GitHub Support & Resources</h2>
+                <p class="text-gray-700 leading-relaxed mb-4 text-center">
+                    GitHub offers a variety of support channels and resources to help you get the most out of the platform.
+                    Whether you need technical assistance, want to learn more, or have questions about your account, help is available.
+                </p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">GitHub Docs</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            The official GitHub documentation is a comprehensive resource for learning how to use all of GitHub's features.
+                            Find guides, tutorials, and reference materials for everything from basic Git commands to advanced CI/CD workflows.
+                        </p>
+                        <a href="https://docs.github.com/" target="_blank" class="text-indigo-600 hover:underline">Visit GitHub Docs &rarr;</a>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Community Forum</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Engage with other GitHub users and experts in the GitHub Community Forum.
+                            Ask questions, share solutions, and discuss best practices with a supportive peer network.
+                        </p>
+                        <a href="https://github.community/" target="_blank" class="text-indigo-600 hover:underline">Go to Community Forum &rarr;</a>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Contact Support</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            For specific account issues, technical problems, or private inquiries, you can contact GitHub Support directly.
+                            Enterprise users typically have dedicated support channels.
+                        </p>
+                        <a href="https://support.github.com/" target="_blank" class="text-indigo-600 hover:underline">Contact GitHub Support &rarr;</a>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">GitHub Status</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Check the current status of GitHub services. If you're experiencing issues, this page provides real-time updates
+                            on system performance and outages.
+                        </p>
+                        <a href="https://www.githubstatus.com/" target="_blank" class="text-indigo-600 hover:underline">Check GitHub Status &rarr;</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="my-12 py-8">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">Contact GitHub Explorer</h2>
+                <p class="text-gray-700 leading-relaxed mb-8 text-center">
+                    Have questions, feedback, or need assistance? Feel free to reach out to us.
+                    While this form is for demonstration, in a real live website, it would process your message.
+                </p>
+                <div class="bg-white p-8 rounded-lg shadow-md max-w-lg mx-auto">
+                    <form action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
+                            <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="you@example.com">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                            <input type="text" id="subject" name="subject" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Inquiry about features">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Your Message</label>
+                            <textarea id="message" name="message" rows="5" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Type your message here..."></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
         </main>
     </div>
 
     <footer class="border-t border-gray-300 py-6 text-center text-gray-600 bg-white shadow-inner">
-        &copy; 2025 - GitHub Explorer - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        &copy; 2025 - GitHub Explorer - <a href="#privacy">Privacy</a>
     </footer>
 
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="~/js/site.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Dropdown functionality
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function () {
+                    const dropdownId = this.dataset.dropdown;
+                    const dropdownMenu = document.getElementById(dropdownId);
 
-<!-- File: Views/Home/Index.cshtml
-This is the main landing page content. -->
+                    // Close all other dropdowns
+                    document.querySelectorAll('.dropdown-menu, .mobile-dropdown-menu').forEach(menu => {
+                        if (menu !== dropdownMenu) {
+                            menu.classList.remove('active');
+                        }
+                    });
 
-@{
-    ViewData["Title"] = "Home Page";
-}
+                    // Toggle the clicked dropdown
+                    dropdownMenu.classList.toggle('active');
+                });
+            });
 
-<div class="text-center py-12">
-    <h1 class="text-5xl font-extrabold text-gray-800 mb-4">Welcome to GitHub Explorer!</h1>
-    <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-        Your comprehensive guide to the world's leading platform for software development and collaboration.
-        Discover how millions of developers and companies build, ship, and maintain their software on GitHub.
-    </p>
-    <a href="@Url.Action("About", "Home")" class="inline-block bg-indigo-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transition duration-300">
-        Learn More About GitHub
-    </a>
-</div>
-
-<div class="grid md:grid-cols-2 gap-8 my-12">
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">What is GitHub?</h2>
-        <p class="text-gray-700 leading-relaxed mb-4">
-            GitHub is a web-based platform that uses Git for version control. It's primarily used for source code management and collaborative development.
-            It allows developers to work together on projects from anywhere in the world, track changes, merge contributions, and manage project workflows efficiently.
-            Beyond just code hosting, GitHub provides a suite of tools for issue tracking, project management, continuous integration/delivery (CI/CD) through GitHub Actions, and more.
-        </p>
-        <p class="text-gray-700 leading-relaxed">
-            It serves as a central hub for millions of open-source and private software projects, fostering a vibrant community of developers.
-            Whether you're a seasoned professional or just starting your coding journey, GitHub offers the tools and community to help you build amazing things.
-        </p>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">Why Use GitHub?</h2>
-        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
-            <li>**Collaboration:** Work seamlessly with teams, review code, and manage contributions.</li>
-            <li>**Version Control:** Track every change to your code, revert to previous versions, and manage multiple branches.</li>
-            <li>**Open Source:** Contribute to or start open-source projects, gaining visibility and learning from others.</li>
-            <li>**Project Management:** Utilize issues, pull requests, and project boards to organize tasks and track progress.</li>
-            <li>**Automation:** Automate workflows with GitHub Actions for testing, building, and deploying your applications.</li>
-            <li>**Community:** Join a massive global community, discover new projects, and connect with other developers.</li>
-        </ul>
-    </div>
-</div>
-
-<div id="infoDisplay" class="hidden bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md shadow-md mt-8" role="alert">
-    <p class="font-bold text-lg mb-2">Selected Feature Information:</p>
-    <div id="infoContent"></div>
-    <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded close-info">Close</button>
-</div>
-
-<!-- File: wwwroot/js/site.js
-This JavaScript handles the interactive dropdown menus and dynamic content display. -->
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Dropdown functionality
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-    dropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', function () {
-            const dropdownId = this.dataset.dropdown;
-            const dropdownMenu = document.getElementById(dropdownId);
-
-            // Close all other dropdowns
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                if (menu !== dropdownMenu) {
-                    menu.classList.remove('active');
+            // Close dropdowns when clicking outside
+            window.addEventListener('click', function (event) {
+                if (!event.target.matches('.dropdown-toggle') && !event.target.closest('.dropdown-menu') && !event.target.closest('.mobile-dropdown-menu')) {
+                    document.querySelectorAll('.dropdown-menu, .mobile-dropdown-menu').forEach(menu => {
+                        menu.classList.remove('active');
+                    });
                 }
             });
 
-            // Toggle the clicked dropdown
-            dropdownMenu.classList.toggle('active');
-        });
-    });
-
-    // Close dropdowns when clicking outside
-    window.addEventListener('click', function (event) {
-        if (!event.target.matches('.dropdown-toggle') && !event.target.closest('.dropdown-menu')) {
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                menu.classList.remove('active');
-            });
-        }
-    });
-
-    // Mobile menu toggle
-    const mobileMenuButton = document.getElementById('mobileMenuButton');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function () {
-            mobileMenu.classList.toggle('hidden');
-        });
-    }
-
-    // Dynamic content display for dropdown items
-    const infoDisplay = document.getElementById('infoDisplay');
-    const infoContent = document.getElementById('infoContent');
-    const closeInfoButton = document.querySelector('.close-info');
-
-    const infoData = {
-        'code-hosting': `
-            <p><strong>Code Hosting & Collaboration:</strong> GitHub provides secure and reliable hosting for your Git repositories. It allows teams to collaborate seamlessly on code, manage changes, and contribute to projects from anywhere in the world. Features like pull requests and code reviews are central to this collaboration.</p>
-        `,
-        'version-control': `
-            <p><strong>Version Control (Git):</strong> At its core, GitHub is built on Git, a powerful distributed version control system. This means every change to your code is tracked, allowing you to revert to previous versions, manage different branches for features, and merge contributions without conflicts.</p>
-        `,
-        'issue-tracking': `
-            <p><strong>Issue Tracking:</strong> GitHub's Issues feature is a robust tool for tracking bugs, enhancements, and other tasks related to your project. It allows for detailed descriptions, labels, assignees, milestones, and comments, making project management transparent and efficient.</p>
-        `,
-        'actions-ci-cd': `
-            <p><strong>GitHub Actions (CI/CD):</strong> GitHub Actions allows you to automate, customize, and execute your software development workflows directly in your repository. You can build, test, and deploy your code with every commit, enabling continuous integration and continuous delivery (CI/CD).</p>
-        `,
-        'pages-hosting': `
-            <p><strong>GitHub Pages:</strong> Host static websites directly from your GitHub repository. It's a free and easy way to publish personal, organization, or project pages, often used for documentation, portfolios, and blogs.</p>
-        `,
-        'forums': `
-            <p><strong>Discussions & Forums:</strong> GitHub Discussions provide a dedicated space for community members to ask questions, share ideas, and engage in conversations about projects. It's a great way to get help, provide feedback, and connect with other developers.</p>
-        `,
-        'events': `
-            <p><strong>Events & Meetups:</strong> The GitHub community is active globally, with numerous events, meetups, and conferences. These provide opportunities for learning, networking, and celebrating open source contributions.</p>
-        `,
-        'open-source': `
-            <p><strong>Open Source Projects:</strong> GitHub is home to millions of open-source projects. You can discover, contribute to, or start your own open-source initiatives, collaborating with a global community and showcasing your work.</p>
-        `
-    };
-
-    document.querySelectorAll('.dropdown-menu a').forEach(item => {
-        item.addEventListener('click', function (event) {
-            event.preventDefault(); // Prevent default link behavior
-            const infoKey = this.dataset.info;
-            if (infoData[infoKey]) {
-                infoContent.innerHTML = infoData[infoKey];
-                infoDisplay.classList.remove('hidden');
-                infoDisplay.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll to info
-                // Close dropdown after selection
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    menu.classList.remove('active');
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
                 });
             }
+
+            // Dynamic content display for dropdown items
+            const infoDisplay = document.getElementById('infoDisplay');
+            const infoContent = document.getElementById('infoContent');
+            const closeInfoButton = document.querySelector('.close-info');
+
+            const infoData = {
+                'code-hosting': `
+                    <p><strong>Code Hosting & Collaboration:</strong> GitHub provides secure and reliable hosting for your Git repositories. It allows teams to collaborate seamlessly on code, manage changes, and contribute to projects from anywhere in the world. Features like pull requests and code reviews are central to this collaboration.</p>
+                `,
+                'version-control': `
+                    <p><strong>Version Control (Git):</strong> At its core, GitHub is built on Git, a powerful distributed version control system. This means every change to your code is tracked, allowing you to revert to previous versions, manage different branches for features, and merge contributions without conflicts.</p>
+                `,
+                'issue-tracking': `
+                    <p><strong>Issue Tracking:</strong> GitHub's Issues feature is a robust tool for tracking bugs, enhancements, and other tasks related to your project. It allows for detailed descriptions, labels, assignees, milestones, and comments, making project management transparent and efficient.</p>
+                `,
+                'actions-ci-cd': `
+                    <p><strong>GitHub Actions (CI/CD):</strong> GitHub Actions allows you to automate, customize, and execute your software development workflows directly in your repository. You can build, test, and deploy your code with every commit, enabling continuous integration and continuous delivery (CI/CD).</p>
+                `,
+                'pages-hosting': `
+                    <p><strong>GitHub Pages:</strong> Host static websites directly from your GitHub repository. It's a free and easy way to publish personal, organization, or project pages, often used for documentation, portfolios, and blogs.</p>
+                `,
+                'forums': `
+                    <p><strong>Discussions & Forums:</strong> GitHub Discussions provide a dedicated space for community members to ask questions, share ideas, and engage in conversations about projects. It's a great way to get help, provide feedback, and connect with other developers.</p>
+                `,
+                'events': `
+                    <p><strong>Events & Meetups:</strong> The GitHub community is active globally, with numerous events, meetups, and conferences. These provide opportunities for learning, networking, and celebrating open source contributions.</p>
+                `,
+                'open-source': `
+                    <p><strong>Open Source Projects:</strong> GitHub is home to millions of open-source projects. You can discover, contribute to, or start your own open-source initiatives, collaborating with a global community and showcasing your work.</p>
+                `
+            };
+
+            document.querySelectorAll('.dropdown-menu a, .mobile-dropdown-menu a').forEach(item => {
+                item.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    const infoKey = this.dataset.info;
+                    if (infoData[infoKey]) {
+                        infoContent.innerHTML = infoData[infoKey];
+                        infoDisplay.classList.remove('hidden');
+                        infoDisplay.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll to info
+                        // Close dropdown after selection
+                        document.querySelectorAll('.dropdown-menu, .mobile-dropdown-menu').forEach(menu => {
+                            menu.classList.remove('active');
+                        });
+                        // Close mobile menu if open
+                        if (!mobileMenu.classList.contains('hidden')) {
+                             mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+
+            if (closeInfoButton) {
+                closeInfoButton.addEventListener('click', function () {
+                    infoDisplay.classList.add('hidden');
+                    infoContent.innerHTML = '';
+                });
+            }
+
+            // Smooth scrolling for internal links (e.g., #about, #features)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
         });
-    });
-
-    if (closeInfoButton) {
-        closeInfoButton.addEventListener('click', function () {
-            infoDisplay.classList.add('hidden');
-            infoContent.innerHTML = '';
-        });
-    }
-});
-
-// --- End of wwwroot/js/site.js ---
-
-@{
-    ViewData["Title"] = "About GitHub";
-}
-
-<h1 class="text-4xl font-bold text-gray-800 mb-6">About GitHub</h1>
-
-<p class="text-gray-700 leading-relaxed mb-4">
-    GitHub is the world's largest platform for developers to host and review code, manage projects, and build software alongside millions of other developers.
-    Founded in 2008, it has grown to become an indispensable tool for individual programmers, small teams, and large enterprises alike.
-</p>
-
-<p class="text-gray-700 leading-relaxed mb-4">
-    At its core, GitHub provides Git-based version control, allowing users to track changes to their code, collaborate on projects, and manage different versions of their software.
-    This distributed version control system ensures that every developer has a complete history of the project, making it easy to revert changes, branch off for new features, and merge contributions.
-</p>
-
-<p class="text-gray-700 leading-relaxed">
-    Beyond just code hosting, GitHub offers a rich ecosystem of features including issue tracking, project boards, wikis, and most notably, GitHub Actions for continuous integration and continuous delivery (CI/CD).
-    It fosters a vibrant open-source community, enabling developers worldwide to share, contribute to, and learn from a vast array of projects.
-</p>
-
-@{
-    ViewData["Title"] = "GitHub Features";
-}
-
-<h1 class="text-4xl font-bold text-gray-800 mb-6">Explore GitHub's Powerful Features</h1>
-
-<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">Code Hosting & Collaboration</h2>
-        <p class="text-gray-700 leading-relaxed">
-            Securely host your code repositories in the cloud. Collaborate with teams using pull requests, code reviews, and inline commenting.
-            Manage branches, merge conflicts, and ensure code quality with powerful collaboration tools.
-        </p>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">Version Control with Git</h2>
-        <p class="text-gray-700 leading-relaxed">
-            Leverage the full power of Git for distributed version control. Track every change, revert to any previous state, and manage project history with ease.
-            This ensures data integrity and provides a safety net for all your development efforts.
-        </p>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">Issue Tracking</h2>
-        <p class="text-gray-700 leading-relaxed">
-            Organize and prioritize your work with GitHub Issues. Track bugs, request features, assign tasks, and discuss solutions with your team.
-            Integrate issues with your code for seamless project management.
-        </p>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">GitHub Actions (CI/CD)</h2>
-        <p class="text-gray-700 leading-relaxed">
-            Automate your software development workflows directly from your repository. Build, test, and deploy your code automatically,
-            reducing manual effort and accelerating your development cycle with continuous integration and continuous delivery.
-        </p>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">GitHub Pages</h2>
-        <p class="text-gray-700 leading-relaxed">
-            Host static websites directly from your GitHub repositories. Perfect for personal portfolios, project documentation, blogs, or simple marketing sites.
-            It's a free and convenient way to publish web content.
-        </p>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">Security & Compliance</h2>
-        <p class="text-gray-700 leading-relaxed">
-            Benefit from advanced security features like code scanning, secret scanning, and dependency review. GitHub helps you identify and fix vulnerabilities early,
-            ensuring your code and projects remain secure and compliant.
-        </p>
-    </div>
-</div>
-
-@{
-    ViewData["Title"] = "GitHub Pricing";
-}
-
-<h1 class="text-4xl font-bold text-gray-800 mb-6">GitHub Pricing Plans</h1>
-
-<p class="text-gray-700 leading-relaxed mb-8">
-    GitHub offers various plans tailored to different needs, from individual developers and small teams to large enterprises.
-    Choose the plan that best fits your collaboration and development requirements.
-</p>
-
-<div class="grid md:grid-cols-3 gap-8">
-    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-indigo-500">
-        <h2 class="text-3xl font-bold text-gray-800 mb-4">Free</h2>
-        <p class="text-gray-600 text-lg mb-4">For individuals and small teams.</p>
-        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2 mb-6">
-            <li>Unlimited public/private repositories</li>
-            <li>2,000 GitHub Actions minutes/month (public repos)</li>
-            <li>500MB GitHub Packages storage</li>
-            <li>Community support</li>
-        </ul>
-        <button class="w-full bg-indigo-600 text-white font-semibold py-3 px-6 rounded-full hover:bg-indigo-700 transition duration-300">
-            Get Started Free
-        </button>
-    </div>
-
-    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-500">
-        <h2 class="text-3xl font-bold text-gray-800 mb-4">Team</h2>
-        <p class="text-gray-600 text-lg mb-4">For growing teams and organizations.</p>
-        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2 mb-6">
-            <li>All Free features, plus:</li>
-            <li>3,000 GitHub Actions minutes/month (private repos)</li>
-            <li>2GB GitHub Packages storage</li>
-            <li>Code owners and protected branches</li>
-            <li>Team discussions</li>
-            <li>Web-based support</li>
-        </ul>
-        <button class="w-full bg-green-600 text-white font-semibold py-3 px-6 rounded-full hover:bg-green-700 transition duration-300">
-            View Team Pricing
-        </button>
-    </div>
-
-    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-purple-500">
-        <h2 class="text-3xl font-bold text-gray-800 mb-4">Enterprise</h2>
-        <p class="text-gray-600 text-lg mb-4">For large organizations requiring advanced security and compliance.</p>
-        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2 mb-6">
-            <li>All Team features, plus:</li>
-            <li>50,000 GitHub Actions minutes/month</li>
-            <li>50GB GitHub Packages storage</li>
-            <li>Advanced security features (code scanning, secret scanning)</li>
-            <li>Audit logs and SAML single sign-on</li>
-            <li>Premium support</li>
-        </ul>
-        <button class="w-full bg-purple-600 text-white font-semibold py-3 px-6 rounded-full hover:bg-purple-700 transition duration-300">
-            Contact Sales
-        </button>
-    </div>
-</div>
-
-<p class="text-center text-gray-600 mt-8">
-    For detailed pricing and custom solutions, please visit the official GitHub pricing page.
-</p>
-
-@{
-    ViewData["Title"] = "GitHub Community";
-}
-
-<h1 class="text-4xl font-bold text-gray-800 mb-6">Join the Global GitHub Community</h1>
-
-<p class="text-gray-700 leading-relaxed mb-4">
-    GitHub is more than just a platform; it's a thriving global community of developers, designers, writers, and innovators.
-    Connecting with others is at the heart of open source and collaborative development.
-</p>
-
-<div class="grid md:grid-cols-2 gap-8">
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">Discussions & Forums</h2>
-        <p class="text-gray-700 leading-relaxed">
-            Engage in conversations, ask questions, and share your knowledge on GitHub Discussions.
-            Many projects have dedicated discussion boards where you can connect directly with maintainers and contributors.
-        </p>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">Events & Meetups</h2>
-        <p class="text-gray-700 leading-relaxed">
-            Participate in official GitHub events, local meetups, and hackathons. These events are fantastic opportunities
-            to learn new skills, network with peers, and contribute to exciting projects.
-        </p>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">Open Source Projects</h2>
-        <p class="text-gray-700 leading-relaxed">
-            Discover millions of open-source projects on GitHub. Contribute to projects you care about,
-            learn from experienced developers, and showcase your skills to the world. Your contributions can make a real impact.
-        </p>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">GitHub Education</h2>
-        <p class="text-gray-700 leading-relaxed">
-            If you're a student or educator, explore GitHub Education for free access to developer tools,
-            learning resources, and a supportive community to kickstart your career in tech.
-        </p>
-    </div>
-</div>
-
-@{
-    ViewData["Title"] = "GitHub Support";
-}
-
-<h1 class="text-4xl font-bold text-gray-800 mb-6">GitHub Support & Resources</h1>
-
-<p class="text-gray-700 leading-relaxed mb-4">
-    GitHub offers a variety of support channels and resources to help you get the most out of the platform.
-    Whether you need technical assistance, want to learn more, or have questions about your account, help is available.
-</p>
-
-<div class="grid md:grid-cols-2 gap-8">
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">GitHub Docs</h2>
-        <p class="text-gray-700 leading-relaxed">
-            The official GitHub documentation is a comprehensive resource for learning how to use all of GitHub's features.
-            Find guides, tutorials, and reference materials for everything from basic Git commands to advanced CI/CD workflows.
-        </p>
-        <a href="https://docs.github.com/" target="_blank" class="text-indigo-600 hover:underline">Visit GitHub Docs &rarr;</a>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">Community Forum</h2>
-        <p class="text-gray-700 leading-relaxed">
-            Engage with other GitHub users and experts in the GitHub Community Forum.
-            Ask questions, share solutions, and discuss best practices with a supportive peer network.
-        </p>
-        <a href="https://github.community/" target="_blank" class="text-indigo-600 hover:underline">Go to Community Forum &rarr;</a>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">Contact Support</h2>
-        <p class="text-gray-700 leading-relaxed">
-            For specific account issues, technical problems, or private inquiries, you can contact GitHub Support directly.
-            Enterprise users typically have dedicated support channels.
-        </p>
-        <a href="https://support.github.com/" target="_blank" class="text-indigo-600 hover:underline">Contact GitHub Support &rarr;</a>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-3">GitHub Status</h2>
-        <p class="text-gray-700 leading-relaxed">
-            Check the current status of GitHub services. If you're experiencing issues, this page provides real-time updates
-            on system performance and outages.
-        </p>
-        <a href="https://www.githubstatus.com/" target="_blank" class="text-indigo-600 hover:underline">Check GitHub Status &rarr;</a>
-    </div>
-</div>
-
-@{
-    ViewData["Title"] = "Contact Us";
-}
-
-<h1 class="text-4xl font-bold text-gray-800 mb-6">Contact GitHub Explorer</h1>
-
-<p class="text-gray-700 leading-relaxed mb-8">
-    Have questions, feedback, or need assistance? Feel free to reach out to us.
-    While this is a conceptual site, in a real application, this form would send your message.
-</p>
-
-<div class="bg-white p-8 rounded-lg shadow-md max-w-lg mx-auto">
-    <form action="#" method="POST" class="space-y-6">
-        <div>
-            <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
-            <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="John Doe">
-        </div>
-        <div>
-            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-            <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="you@example.com">
-        </div>
-        <div>
-            <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
-            <input type="text" id="subject" name="subject" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Inquiry about features">
-        </div>
-        <div>
-            <label for="message" class="block text-sm font-medium text-gray-700">Your Message</label>
-            <textarea id="message" name="message" rows="5" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Type your message here..."></textarea>
-        </div>
-        <div class="text-center">
-            <button type="submit" class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
-                Send Message
-            </button>
-        </div>
-    </form>
-</div>
+    </script>
+</body>
+</html>
