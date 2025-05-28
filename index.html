@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aassheervaad Solutions</title>
+  <title>WebCraft Solutions</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
@@ -20,15 +20,6 @@
       padding: 20px 0;
       text-align: center;
       position: relative;
-    }
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-    }
-    .logo {
-      height: 60px;
     }
     nav ul {
       list-style-type: none;
@@ -51,7 +42,7 @@
       background-color: rgba(255, 255, 255, 0.2);
       border-radius: 5px;
     }
-    .dropdown-content {
+    .dropdown-content, .submenu-content {
       display: none;
       position: absolute;
       top: 35px;
@@ -59,15 +50,16 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       z-index: 1;
     }
-    .dropdown-content li {
+    .dropdown-content li, .submenu-content li {
       display: block;
     }
-    .dropdown-content a {
+    .dropdown-content a, .submenu-content a {
       color: #333;
       padding: 10px 15px;
       display: block;
     }
-    .dropdown:hover .dropdown-content {
+    .dropdown:hover .dropdown-content,
+    .submenu:hover .submenu-content {
       display: block;
     }
     .hero {
@@ -79,6 +71,7 @@
       height: auto;
       max-height: 400px;
       object-fit: cover;
+      background: #ccc;
     }
     .hero-text {
       padding: 30px;
@@ -97,10 +90,7 @@
 </head>
 <body>
   <header>
-    <div class="header-container">
-      <img src="images/logo.png" alt="Aassheervaad Logo" class="logo" />
-      <h1>Aassheervaad Solutions</h1>
-    </div>
+    <h1>WebCraft Solutions</h1>
     <nav>
       <ul class="menu">
         <li><a href="index.html">Home</a></li>
@@ -108,8 +98,23 @@
           <a href="services.html">Services</a>
           <ul class="dropdown-content">
             <li><a href="web-design.html">Web Design</a></li>
+            <li class="submenu">
+              <a href="#">Development ▸</a>
+              <ul class="submenu-content">
+                <li><a href="frontend.html">Frontend</a></li>
+                <li><a href="backend.html">Backend</a></li>
+              </ul>
+            </li>
             <li><a href="ecommerce.html">E-Commerce</a></li>
             <li><a href="seo.html">SEO</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="solutions.html">Solutions</a>
+          <ul class="dropdown-content">
+            <li><a href="wordpress.html">WordPress</a></li>
+            <li><a href="shopify.html">Shopify</a></li>
+            <li><a href="webflow.html">Webflow</a></li>
           </ul>
         </li>
         <li><a href="portfolio.html">Portfolio</a></li>
@@ -121,35 +126,31 @@
 
   <main>
     <section class="hero">
-      <img src="images/hero-banner.jpg" alt="Hero Banner" class="hero-image" />
+      <div class="hero-image"></div>
       <div class="hero-text">
-        <h2>Welcome to Aassheervaad Solutions</h2>
+        <h2>Welcome to WebCraft Solutions</h2>
         <p>
-          At Aassheervaad Solutions, we specialize in creating stunning, responsive websites that empower businesses to grow in the digital world. Our mission is to craft high-performing web experiences that are both visually engaging and technically robust.
+          At WebCraft Solutions, we specialize in building innovative, user-friendly websites and digital platforms tailored to your business needs.
         </p>
         <p>
-          Whether you’re a startup looking to launch your first online presence or an enterprise aiming to revamp your digital strategy, we’ve got the right tools and team to make it happen. Our solutions are fully customized to your unique goals and industry.
+          We offer comprehensive services from front-end UI/UX design to back-end development, integrating with the latest CMS and e-commerce platforms.
         </p>
-        <p>
-          <strong>Our capabilities include:</strong>
-        </p>
+        <p><strong>Explore our offerings:</strong></p>
         <ul>
-          <li>Custom Web Design and Development</li>
-          <li>E-Commerce Integration and Optimization</li>
-          <li>SEO and Digital Marketing Strategies</li>
-          <li>Mobile App Integration</li>
-          <li>CMS Platforms like WordPress, Shopify, Webflow</li>
-          <li>Performance Tuning & Site Analytics</li>
+          <li>Beautiful and Responsive Web Design</li>
+          <li>Full-Stack Development (Frontend & Backend)</li>
+          <li>Content Management Systems: WordPress, Shopify, Webflow</li>
+          <li>Performance and SEO Optimization</li>
+          <li>E-commerce Setup and Support</li>
+          <li>Ongoing Maintenance and Security</li>
         </ul>
-        <p>
-          Let’s build your digital future together. Explore our services, view our past work, and connect with us to get started.
-        </p>
+        <p>Discover how we can transform your online presence into a powerful business asset.</p>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Aassheervaad Solutions. All rights reserved.</p>
+    <p>&copy; 2025 WebCraft Solutions. All rights reserved.</p>
   </footer>
 </body>
 </html>
