@@ -3,15 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GitHub Explorer</title>
+    <title>Aassheervaad - Your Digital Partner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* bg-gray-100 */
-            color: #1f2937; /* text-gray-900 */
+            background-color: #f8fafc; /* bg-slate-50 */
+            color: #1e293b; /* text-slate-800 */
         }
         /* Custom styles for dropdowns */
         .dropdown-menu {
@@ -30,340 +30,229 @@
         .mobile-dropdown-menu.active {
             display: block;
         }
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body>
-    <header class="bg-gray-800 text-white shadow-md">
+    <header class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white shadow-lg sticky top-0 z-50">
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a class="text-2xl font-bold text-indigo-400" href="index.html">
-                <i class="fab fa-github mr-2"></i>GitHub Explorer
+            <a class="text-3xl font-bold text-white hover:text-blue-200 transition duration-300" href="#home">
+                Aassheervaad
             </a>
-            <div class="hidden md:flex space-x-6">
-                <a class="hover:text-indigo-400 transition duration-300" href="#about">About</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a class="hover:text-blue-200 transition duration-300 text-lg font-medium" href="#home">Home</a>
                 <div class="relative group">
-                    <button class="hover:text-indigo-400 transition duration-300 focus:outline-none flex items-center dropdown-toggle" data-dropdown="featuresDropdown">
-                        Features
-                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <button class="hover:text-blue-200 transition duration-300 focus:outline-none flex items-center text-lg font-medium dropdown-toggle" data-dropdown="servicesDropdown">
+                        Services
+                        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="featuresDropdown" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white text-gray-900 rounded-md shadow-lg py-1">
-                        <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="code-hosting">Code Hosting & Collaboration</a>
-                        <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="version-control">Version Control (Git)</a>
-                        <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="issue-tracking">Issue Tracking</a>
-                        <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="actions-ci-cd">GitHub Actions (CI/CD)</a>
-                        <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="pages-hosting">GitHub Pages</a>
+                    <div id="servicesDropdown" class="dropdown-menu absolute left-0 mt-2 w-64 bg-white text-slate-800 rounded-lg shadow-xl py-2">
+                        <a class="block px-5 py-3 hover:bg-blue-100 transition duration-200 text-base" href="#" data-info="web-design">Web Design & UI/UX</a>
+                        <a class="block px-5 py-3 hover:bg-blue-100 transition duration-200 text-base" href="#" data-info="web-development">Custom Web Development</a>
+                        <a class="block px-5 py-3 hover:bg-blue-100 transition duration-200 text-base" href="#" data-info="ecommerce">E-commerce Solutions</a>
+                        <a class="block px-5 py-3 hover:bg-blue-100 transition duration-200 text-base" href="#" data-info="seo-marketing">SEO & Digital Marketing</a>
+                        <a class="block px-5 py-3 hover:bg-blue-100 transition duration-200 text-base" href="#" data-info="maintenance">Website Maintenance & Support</a>
                     </div>
                 </div>
-                <a class="hover:text-indigo-400 transition duration-300" href="#pricing">Pricing</a>
-                <div class="relative group">
-                    <button class="hover:text-indigo-400 transition duration-300 focus:outline-none flex items-center dropdown-toggle" data-dropdown="communityDropdown">
-                        Community
-                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div id="communityDropdown" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white text-gray-900 rounded-md shadow-lg py-1">
-                        <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="forums">Discussions & Forums</a>
-                        <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="events">Events & Meetups</a>
-                        <a class="block px-4 py-2 hover:bg-gray-200" href="#" data-info="open-source">Open Source Projects</a>
-                    </div>
-                </div>
-                <a class="hover:text-indigo-400 transition duration-300" href="#support">Support</a>
-                <a class="hover:text-indigo-400 transition duration-300" href="#contact">Contact</a>
+                <a class="hover:text-blue-200 transition duration-300 text-lg font-medium" href="#portfolio">Portfolio</a>
+                <a class="hover:text-blue-200 transition duration-300 text-lg font-medium" href="#about-us">About Us</a>
+                <a class="hover:text-blue-200 transition duration-300 text-lg font-medium" href="#contact">Contact</a>
             </div>
             <button id="mobileMenuButton" class="md:hidden text-white focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
-        <div id="mobileMenu" class="md:hidden bg-gray-700 hidden">
+        <div id="mobileMenu" class="md:hidden bg-blue-800 hidden">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600" href="#about">About</a>
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-700" href="#home">Home</a>
                 <div class="relative">
-                    <button class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600 flex items-center justify-between dropdown-toggle" data-dropdown="mobileFeaturesDropdown">
-                        Features
-                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <button class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-700 flex items-center justify-between dropdown-toggle" data-dropdown="mobileServicesDropdown">
+                        Services
+                        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="mobileFeaturesDropdown" class="mobile-dropdown-menu mt-1 w-full bg-gray-600 text-white rounded-md shadow-lg py-1 pl-6">
-                        <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="code-hosting">Code Hosting & Collaboration</a>
-                        <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="version-control">Version Control (Git)</a>
-                        <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="issue-tracking">Issue Tracking</a>
-                        <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="actions-ci-cd">GitHub Actions (CI/CD)</a>
-                        <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="pages-hosting">GitHub Pages</a>
+                    <div id="mobileServicesDropdown" class="mobile-dropdown-menu mt-1 w-full bg-blue-700 text-white rounded-md shadow-lg py-1 pl-6">
+                        <a class="block px-4 py-2 hover:bg-blue-600" href="#" data-info="web-design">Web Design & UI/UX</a>
+                        <a class="block px-4 py-2 hover:bg-blue-600" href="#" data-info="web-development">Custom Web Development</a>
+                        <a class="block px-4 py-2 hover:bg-blue-600" href="#" data-info="ecommerce">E-commerce Solutions</a>
+                        <a class="block px-4 py-2 hover:bg-blue-600" href="#" data-info="seo-marketing">SEO & Digital Marketing</a>
+                        <a class="block px-4 py-2 hover:bg-blue-600" href="#" data-info="maintenance">Website Maintenance & Support</a>
                     </div>
                 </div>
-                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600" href="#pricing">Pricing</a>
-                <div class="relative">
-                    <button class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600 flex items-center justify-between dropdown-toggle" data-dropdown="mobileCommunityDropdown">
-                        Community
-                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div id="mobileCommunityDropdown" class="mobile-dropdown-menu mt-1 w-full bg-gray-600 text-white rounded-md shadow-lg py-1 pl-6">
-                        <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="forums">Discussions & Forums</a>
-                        <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="events">Events & Meetups</a>
-                        <a class="block px-4 py-2 hover:bg-gray-500" href="#" data-info="open-source">Open Source Projects</a>
-                    </div>
-                </div>
-                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600" href="#support">Support</a>
-                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-600" href="#contact">Contact</a>
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-700" href="#portfolio">Portfolio</a>
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-700" href="#about-us">About Us</a>
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-700" href="#contact">Contact</a>
             </div>
         </div>
     </header>
 
-    <div class="container mx-auto px-4 py-8 min-h-[calc(100vh-160px)]">
-        <main role="main" class="pb-3">
-            <section id="home" class="text-center py-12">
-                <h1 class="text-5xl font-extrabold text-gray-800 mb-4">Welcome to GitHub Explorer!</h1>
-                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                    Your comprehensive guide to the world's leading platform for software development and collaboration.
-                    Discover how millions of developers and companies build, ship, and maintain their software on GitHub.
-                </p>
-                <a href="#about" class="inline-block bg-indigo-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transition duration-300">
-                    Learn More About GitHub
-                </a>
-            </section>
+    <main class="container mx-auto px-4 py-8">
+        <section id="home" class="text-center py-20 bg-white rounded-lg shadow-xl mb-12">
+            <h1 class="text-6xl font-extrabold text-blue-800 mb-6 leading-tight">
+                Crafting Exceptional Digital Experiences
+            </h1>
+            <p class="text-2xl text-slate-600 mb-10 max-w-3xl mx-auto">
+                At **Aassheervaad**, we specialize in creating stunning, functional, and high-performing websites
+                that drive growth and connect you with your audience.
+            </p>
+            <a href="#contact" class="inline-block bg-blue-600 text-white font-semibold py-4 px-10 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 text-xl">
+                Get a Free Consultation
+            </a>
+        </section>
 
-            <div id="infoDisplay" class="hidden bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md shadow-md mt-8" role="alert">
-                <p class="font-bold text-lg mb-2">Selected Feature Information:</p>
-                <div id="infoContent"></div>
-                <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded close-info">Close</button>
+        <div id="infoDisplay" class="hidden bg-blue-50 border-l-4 border-blue-500 text-blue-800 p-6 rounded-lg shadow-md mb-12" role="alert">
+            <p class="font-bold text-2xl mb-3">Service Details:</p>
+            <div id="infoContent" class="text-lg leading-relaxed"></div>
+            <button class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 close-info">
+                Close Details
+            </button>
+        </div>
+
+        <section id="services-overview" class="my-12 py-8 bg-white rounded-lg shadow-lg">
+            <h2 class="text-5xl font-bold text-center text-blue-800 mb-12">Our Core Capabilities</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 px-6">
+                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <i class="fas fa-palette text-blue-600 text-5xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-3">Intuitive Web Design</h3>
+                    <p class="text-slate-700 leading-relaxed">
+                        Crafting visually appealing and user-friendly interfaces that engage your visitors from the first click.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <i class="fas fa-code text-blue-600 text-5xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-3">Robust Web Development</h3>
+                    <p class="text-slate-700 leading-relaxed">
+                        Building scalable, secure, and high-performance websites tailored to your unique business needs.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <i class="fas fa-shopping-cart text-blue-600 text-5xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-3">Powerful E-commerce</h3>
+                    <p class="text-slate-700 leading-relaxed">
+                        Developing online stores that convert visitors into loyal customers with seamless shopping experiences.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <i class="fas fa-chart-line text-blue-600 text-5xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-3">SEO & Digital Marketing</h3>
+                    <p class="text-slate-700 leading-relaxed">
+                        Boosting your online visibility and driving targeted traffic to your website for maximum reach.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <i class="fas fa-tools text-blue-600 text-5xl mb-4"></i>
+                    <h3 class="2xl font-semibold text-slate-800 mb-3">Ongoing Maintenance</h3>
+                    <p class="text-slate-700 leading-relaxed">
+                        Ensuring your website remains secure, fast, and up-to-date with continuous support and optimization.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition duration-300">
+                    <i class="fas fa-mobile-alt text-blue-600 text-5xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-3">Mobile Responsiveness</h3>
+                    <p class="text-slate-700 leading-relaxed">
+                        Guaranteeing your site looks and functions flawlessly on all devices, from desktops to smartphones.
+                    </p>
+                </div>
             </div>
+        </section>
 
-            <section id="about" class="my-12 py-8 bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-4xl font-bold text-gray-800 mb-6">About GitHub</h2>
-                <p class="text-gray-700 leading-relaxed mb-4">
-                    GitHub is the world's largest platform for developers to host and review code, manage projects, and build software alongside millions of other developers.
-                    Founded in 2008, it has grown to become an indispensable tool for individual programmers, small teams, and large enterprises alike.
-                </p>
-                <p class="text-gray-700 leading-relaxed mb-4">
-                    At its core, GitHub provides Git-based version control, allowing users to track changes to their code, collaborate on projects, and manage different versions of their software.
-                    This distributed version control system ensures that every developer has a complete history of the project, making it easy to revert changes, branch off for new features, and merge contributions.
-                </p>
-                <p class="text-gray-700 leading-relaxed">
-                    Beyond just code hosting, GitHub offers a rich ecosystem of features including issue tracking, project boards, wikis, and most notably, GitHub Actions for continuous integration and continuous delivery (CI/CD).
-                    It fosters a vibrant open-source community, enabling developers worldwide to share, contribute to, and learn from a vast array of projects.
-                </p>
-            </section>
-
-            <section id="features" class="my-12 py-8">
-                <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">Explore GitHub's Powerful Features</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Code Hosting & Collaboration</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Securely host your code repositories in the cloud. Collaborate with teams using pull requests, code reviews, and inline commenting.
-                            Manage branches, merge conflicts, and ensure code quality with powerful collaboration tools.
-                        </p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Version Control with Git</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Leverage the full power of Git for distributed version control. Track every change, revert to any previous state, and manage project history with ease.
-                            This ensures data integrity and provides a safety net for all your development efforts.
-                        </p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Issue Tracking</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Organize and prioritize your work with GitHub Issues. Track bugs, request features, assign tasks, and discuss solutions with your team.
-                            Integrate issues with your code for seamless project management.
-                        </p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">GitHub Actions (CI/CD)</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Automate your software development workflows directly from your repository. Build, test, and deploy your code automatically,
-                            reducing manual effort and accelerating your development cycle with continuous integration and continuous delivery.
-                        </p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">GitHub Pages</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Host static websites directly from your GitHub repositories. Perfect for personal portfolios, project documentation, blogs, or simple marketing sites.
-                            It's a free and convenient way to publish web content.
-                        </p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Security & Compliance</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Benefit from advanced security features like code scanning, secret scanning, and dependency review. GitHub helps you identify and fix vulnerabilities early,
-                            ensuring your code and projects remain secure and compliant.
-                        </p>
+        <section id="portfolio" class="my-12 py-8 bg-white rounded-lg shadow-lg">
+            <h2 class="text-5xl font-bold text-center text-blue-800 mb-12">Our Recent Work</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="https://placehold.co/600x400/E0F2F7/0284C7?text=E-commerce+Store" alt="E-commerce Website" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Modern E-commerce Platform</h3>
+                        <p class="text-slate-700 text-sm">Developed a high-converting online store for a fashion brand, featuring intuitive navigation and secure payment gateways.</p>
+                        <a href="#" class="text-blue-600 hover:underline mt-3 inline-block">View Project &rarr;</a>
                     </div>
                 </div>
-            </section>
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="https://placehold.co/600x400/E0F2F7/0284C7?text=SaaS+Dashboard" alt="SaaS Dashboard" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">SaaS Application Dashboard</h3>
+                        <p class="text-slate-700 text-sm">Designed and developed a sleek, user-friendly dashboard for a B2B SaaS product, enhancing user engagement.</p>
+                        <a href="#" class="text-blue-600 hover:underline mt-3 inline-block">View Project &rarr;</a>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="https://placehold.co/600x400/E0F2F7/0284C7?text=Corporate+Site" alt="Corporate Website" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Corporate Information Hub</h3>
+                        <p class="text-slate-700 text-sm">Built a robust corporate website with extensive content management capabilities and a focus on lead generation.</p>
+                        <a href="#" class="text-blue-600 hover:underline mt-3 inline-block">View Project &rarr;</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="#contact" class="inline-block bg-indigo-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transition duration-300 text-lg">
+                    See More Projects
+                </a>
+            </div>
+        </section>
 
-            <section id="pricing" class="my-12 py-8 bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">GitHub Pricing Plans</h2>
-                <p class="text-gray-700 leading-relaxed mb-8 text-center">
-                    GitHub offers various plans tailored to different needs, from individual developers and small teams to large enterprises.
-                    Choose the plan that best fits your collaboration and development requirements.
+        <section id="about-us" class="my-12 py-8 bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-5xl font-bold text-center text-blue-800 mb-12">About Aassheervaad</h2>
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-slate-700 text-lg leading-relaxed mb-6">
+                    Founded in 2015, **Aassheervaad** emerged from a passion for digital innovation and a commitment to helping businesses thrive online.
+                    We are a team of dedicated designers, developers, and digital strategists who believe in the power of a well-crafted website to transform
+                    a company's presence and impact.
                 </p>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-indigo-500">
-                        <h3 class="text-3xl font-bold text-gray-800 mb-4">Free</h3>
-                        <p class="text-gray-600 text-lg mb-4">For individuals and small teams.</p>
-                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2 mb-6">
-                            <li>Unlimited public/private repositories</li>
-                            <li>2,000 GitHub Actions minutes/month (public repos)</li>
-                            <li>500MB GitHub Packages storage</li>
-                            <li>Community support</li>
-                        </ul>
-                        <button class="w-full bg-indigo-600 text-white font-semibold py-3 px-6 rounded-full hover:bg-indigo-700 transition duration-300">
-                            Get Started Free
+                <p class="text-slate-700 text-lg leading-relaxed mb-6">
+                    Our mission is to deliver tailor-made web solutions that not only look exceptional but also perform flawlessly,
+                    meeting the unique challenges and goals of each client. We pride ourselves on transparent communication, agile development methodologies,
+                    and a relentless pursuit of excellence in every project we undertake.
+                </p>
+                <p class="text-slate-700 text-lg leading-relaxed">
+                    From initial concept to ongoing support, we partner with you every step of the way, ensuring your digital vision becomes a reality.
+                    Let's build something amazing together!
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="my-12 py-8 bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-5xl font-bold text-center text-blue-800 mb-12">Get in Touch</h2>
+            <p class="text-slate-700 text-lg leading-relaxed mb-8 text-center max-w-2xl mx-auto">
+                Ready to start your next digital project? Have questions about our services?
+                Fill out the form below, and our team will get back to you shortly.
+            </p>
+            <div class="max-w-xl mx-auto bg-gray-50 p-8 rounded-lg shadow-md">
+                <form action="https://formspree.io/f/your_form_id" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-slate-700">Your Name</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-base" placeholder="John Doe" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-700">Email Address</label>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-base" placeholder="you@example.com" required>
+                    </div>
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-slate-700">Subject</label>
+                        <input type="text" id="subject" name="subject" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-base" placeholder="Inquiry about web design">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-slate-700">Your Message</label>
+                        <textarea id="message" name="message" rows="6" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-base" placeholder="Tell us about your project or question..." required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="inline-flex justify-center py-3 px-10 border border-transparent shadow-lg text-lg font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                            Send Message
                         </button>
                     </div>
+                </form>
+            </div>
+            <p class="text-center text-slate-600 text-sm mt-8">
+                For actual form submission, you would integrate a backend service or a third-party form provider like <a href="https://formspree.io/" target="_blank" class="text-blue-600 hover:underline">Formspree.io</a>.
+            </p>
+        </section>
+    </main>
 
-                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-500">
-                        <h3 class="text-3xl font-bold text-gray-800 mb-4">Team</h3>
-                        <p class="text-gray-600 text-lg mb-4">For growing teams and organizations.</p>
-                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2 mb-6">
-                            <li>All Free features, plus:</li>
-                            <li>3,000 GitHub Actions minutes/month (private repos)</li>
-                            <li>2GB GitHub Packages storage</li>
-                            <li>Code owners and protected branches</li>
-                            <li>Team discussions</li>
-                            <li>Web-based support</li>
-                        </ul>
-                        <button class="w-full bg-green-600 text-white font-semibold py-3 px-6 rounded-full hover:bg-green-700 transition duration-300">
-                            View Team Pricing
-                        </button>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-purple-500">
-                        <h3 class="text-3xl font-bold text-gray-800 mb-4">Enterprise</h3>
-                        <p class="text-gray-600 text-lg mb-4">For large organizations requiring advanced security and compliance.</p>
-                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2 mb-6">
-                            <li>All Team features, plus:</li>
-                            <li>50,000 GitHub Actions minutes/month</li>
-                            <li>50GB GitHub Packages storage</li>
-                            <li>Advanced security features (code scanning, secret scanning)</li>
-                            <li>Audit logs and SAML single sign-on</li>
-                            <li>Premium support</li>
-                        </ul>
-                        <button class="w-full bg-purple-600 text-white font-semibold py-3 px-6 rounded-full hover:bg-purple-700 transition duration-300">
-                            Contact Sales
-                        </button>
-                    </div>
-                </div>
-                <p class="text-center text-gray-600 mt-8">
-                    For detailed pricing and custom solutions, please visit the official GitHub pricing page.
-                </p>
-            </section>
-
-            <section id="community" class="my-12 py-8">
-                <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">Join the Global GitHub Community</h2>
-                <p class="text-gray-700 leading-relaxed mb-4 text-center">
-                    GitHub is more than just a platform; it's a thriving global community of developers, designers, writers, and innovators.
-                    Connecting with others is at the heart of open source and collaborative development.
-                </p>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Discussions & Forums</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Engage in conversations, ask questions, and share your knowledge on GitHub Discussions.
-                            Many projects have dedicated discussion boards where you can connect directly with maintainers and contributors.
-                        </p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Events & Meetups</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Participate in official GitHub events, local meetups, and hackathons. These events are fantastic opportunities
-                            to learn new skills, network with peers, and contribute to exciting projects.
-                        </p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Open Source Projects</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Discover millions of open-source projects on GitHub. Contribute to projects you care about,
-                            learn from experienced developers, and showcase your skills to the world. Your contributions can make a real impact.
-                        </p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">GitHub Education</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            If you're a student or educator, explore GitHub Education for free access to developer tools,
-                            learning resources, and a supportive community to kickstart your career in tech.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="support" class="my-12 py-8 bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">GitHub Support & Resources</h2>
-                <p class="text-gray-700 leading-relaxed mb-4 text-center">
-                    GitHub offers a variety of support channels and resources to help you get the most out of the platform.
-                    Whether you need technical assistance, want to learn more, or have questions about your account, help is available.
-                </p>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">GitHub Docs</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            The official GitHub documentation is a comprehensive resource for learning how to use all of GitHub's features.
-                            Find guides, tutorials, and reference materials for everything from basic Git commands to advanced CI/CD workflows.
-                        </p>
-                        <a href="https://docs.github.com/" target="_blank" class="text-indigo-600 hover:underline">Visit GitHub Docs &rarr;</a>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Community Forum</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Engage with other GitHub users and experts in the GitHub Community Forum.
-                            Ask questions, share solutions, and discuss best practices with a supportive peer network.
-                        </p>
-                        <a href="https://github.community/" target="_blank" class="text-indigo-600 hover:underline">Go to Community Forum &rarr;</a>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Contact Support</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            For specific account issues, technical problems, or private inquiries, you can contact GitHub Support directly.
-                            Enterprise users typically have dedicated support channels.
-                        </p>
-                        <a href="https://support.github.com/" target="_blank" class="text-indigo-600 hover:underline">Contact GitHub Support &rarr;</a>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">GitHub Status</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Check the current status of GitHub services. If you're experiencing issues, this page provides real-time updates
-                            on system performance and outages.
-                        </p>
-                        <a href="https://www.githubstatus.com/" target="_blank" class="text-indigo-600 hover:underline">Check GitHub Status &rarr;</a>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact" class="my-12 py-8">
-                <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">Contact GitHub Explorer</h2>
-                <p class="text-gray-700 leading-relaxed mb-8 text-center">
-                    Have questions, feedback, or need assistance? Feel free to reach out to us.
-                    While this form is for demonstration, in a real live website, it would process your message.
-                </p>
-                <div class="bg-white p-8 rounded-lg shadow-md max-w-lg mx-auto">
-                    <form action="#" method="POST" class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
-                            <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="John Doe">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                            <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="you@example.com">
-                        </div>
-                        <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
-                            <input type="text" id="subject" name="subject" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Inquiry about features">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700">Your Message</label>
-                            <textarea id="message" name="message" rows="5" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Type your message here..."></textarea>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <footer class="border-t border-gray-300 py-6 text-center text-gray-600 bg-white shadow-inner">
-        &copy; 2025 - GitHub Explorer - <a href="#privacy">Privacy</a>
+    <footer class="border-t border-gray-300 py-8 text-center text-slate-600 bg-white shadow-inner">
+        <p>&copy; 2025 Aassheervaad. All rights reserved.</p>
+        <p class="mt-2 text-sm">Designed with <i class="fas fa-heart text-red-500"></i> by your digital partner.</p>
     </footer>
 
     <script>
@@ -411,29 +300,30 @@
             const closeInfoButton = document.querySelector('.close-info');
 
             const infoData = {
-                'code-hosting': `
-                    <p><strong>Code Hosting & Collaboration:</strong> GitHub provides secure and reliable hosting for your Git repositories. It allows teams to collaborate seamlessly on code, manage changes, and contribute to projects from anywhere in the world. Features like pull requests and code reviews are central to this collaboration.</p>
+                'web-design': `
+                    <p class="mb-4">Our **Web Design & UI/UX** service focuses on creating visually stunning and highly intuitive user interfaces (UI) and user experiences (UX). We believe a great website starts with thoughtful design that captivates your audience and guides them seamlessly through your content.</p>
+                    <p class="mb-4">We employ a user-centric design approach, conducting thorough research to understand your target audience and business goals. This allows us to craft wireframes, mockups, and prototypes that are not only aesthetically pleasing but also optimized for usability, accessibility, and conversion. From modern layouts to engaging animations, we ensure your website leaves a lasting impression.</p>
+                    <p>Key aspects include responsive design for all devices, brand consistency, and a focus on optimal user flow to achieve your business objectives.</p>
                 `,
-                'version-control': `
-                    <p><strong>Version Control (Git):</strong> At its core, GitHub is built on Git, a powerful distributed version control system. This means every change to your code is tracked, allowing you to revert to previous versions, manage different branches for features, and merge contributions without conflicts.</p>
+                'web-development': `
+                    <p class="mb-4">Our **Custom Web Development** service brings your unique digital vision to life with robust and scalable code. We specialize in building dynamic web applications and complex websites from scratch, ensuring they are secure, high-performing, and tailored precisely to your specifications.</p>
+                    <p class="mb-4">We cover both frontend (what users see and interact with) and backend (server-side logic, databases, APIs) development. Our expertise spans a wide range of modern technologies and frameworks, allowing us to choose the best stack for your project's needs. Whether you require a custom content management system, a complex data integration, or a unique interactive feature, we build solutions that are flexible, maintainable, and future-proof.</p>
+                    <p>We prioritize clean code, efficient architecture, and rigorous testing to deliver a stable and reliable web solution.</p>
                 `,
-                'issue-tracking': `
-                    <p><strong>Issue Tracking:</strong> GitHub's Issues feature is a robust tool for tracking bugs, enhancements, and other tasks related to your project. It allows for detailed descriptions, labels, assignees, milestones, and comments, making project management transparent and efficient.</p>
+                'ecommerce': `
+                    <p class="mb-4">Our **E-commerce Solutions** are designed to help you sell online effectively and efficiently. We build powerful, secure, and user-friendly online stores that provide a seamless shopping experience for your customers and robust management tools for you.</p>
+                    <p class="mb-4">From product catalog setup and inventory management to secure payment gateway integrations and order fulfillment systems, we handle every aspect of your online store. We can work with popular platforms like Shopify, WooCommerce, or develop custom e-commerce solutions to fit specific business models. Our focus is on optimizing the conversion funnel, enhancing product discoverability, and providing analytics to help you understand your customers and grow your sales.</p>
+                    <p>We ensure your e-commerce site is mobile-responsive, fast-loading, and equipped with features that encourage repeat purchases and customer loyalty.</p>
                 `,
-                'actions-ci-cd': `
-                    <p><strong>GitHub Actions (CI/CD):</strong> GitHub Actions allows you to automate, customize, and execute your software development workflows directly in your repository. You can build, test, and deploy your code with every commit, enabling continuous integration and continuous delivery (CI/CD).</p>
+                'seo-marketing': `
+                    <p class="mb-4">Our **SEO & Digital Marketing** services are crucial for ensuring your beautifully crafted website gets found by your target audience. We implement strategies to boost your search engine rankings, drive organic traffic, and enhance your overall online visibility.</p>
+                    <p class="mb-4">This includes comprehensive keyword research, on-page optimization, technical SEO audits, content strategy development, and link-building initiatives. Beyond SEO, we can assist with broader digital marketing efforts such as social media strategy, email marketing integration, and online advertising campaigns to create a holistic approach to attracting and engaging your customers. Our goal is to increase your brand's reach, generate quality leads, and improve your return on investment.</p>
+                    <p>We provide regular performance reports and adapt strategies based on data-driven insights to ensure continuous improvement.</p>
                 `,
-                'pages-hosting': `
-                    <p><strong>GitHub Pages:</strong> Host static websites directly from your GitHub repository. It's a free and easy way to publish personal, organization, or project pages, often used for documentation, portfolios, and blogs.</p>
-                `,
-                'forums': `
-                    <p><strong>Discussions & Forums:</strong> GitHub Discussions provide a dedicated space for community members to ask questions, share ideas, and engage in conversations about projects. It's a great way to get help, provide feedback, and connect with other developers.</p>
-                `,
-                'events': `
-                    <p><strong>Events & Meetups:</strong> The GitHub community is active globally, with numerous events, meetups, and conferences. These provide opportunities for learning, networking, and celebrating open source contributions.</p>
-                `,
-                'open-source': `
-                    <p><strong>Open Source Projects:</strong> GitHub is home to millions of open-source projects. You can discover, contribute to, or start your own open-source initiatives, collaborating with a global community and showcasing your work.</p>
+                'maintenance': `
+                    <p class="mb-4">Our **Website Maintenance & Support** service ensures your website remains secure, performs optimally, and stays up-to-date long after launch. A website is a living asset that requires continuous care to function effectively and protect your online presence.</p>
+                    <p class="mb-4">This service includes regular software updates, security monitoring and patches, performance optimization (speed improvements), broken link checks, content updates, and database backups. We also provide technical support to address any issues that may arise, ensuring minimal downtime and a smooth user experience. Our proactive approach helps prevent problems before they occur, giving you peace of mind.</p>
+                    <p>With our maintenance plans, you can focus on your core business while we ensure your website is always running at its best, adapting to new technologies and security threats.</p>
                 `
             };
 
@@ -477,3 +367,4 @@
     </script>
 </body>
 </html>
+```
